@@ -8,8 +8,7 @@ warnings.simplefilter("ignore", UserWarning)
 app = FastAPI()
 
 text_generator = CyberClassic(
-    min_length=30,
-    max_length=50,
+    max_length=60,
     startings_path='./startings.csv'
 )
 

@@ -13,12 +13,10 @@ import numpy as np
 class CyberClassic(torch.nn.Module):
     def __init__(
             self,
-            min_length: int, 
             max_length: int,
             startings_path: str
         ) -> None:
         super().__init__()
-        self.min_length = min_length
         self.max_length = max_length
         self.startings = pd.read_csv(startings_path)
 
@@ -26,17 +24,13 @@ class CyberClassic(torch.nn.Module):
         self.generator: GPT2LMHeadModel = AutoModelForCausalLM.from_pretrained('Roaoch/CyberClassic-Generator')
         self.discriminator = DiscriminatorModel.from_pretrained('Roaoch/CyberClassic-Discriminator')
 
-        self.tokenizer.pad_token = self.tokenizer.eos_token
         self.generation_config = GenerationConfig(
             max_new_tokens=max_length,
             num_beams=6,
             early_stopping=True,
             do_sample=True,
-            # top_k=60,
-            # penalty_alpha=0.6,
-            # top_p=0.95,
             eos_token_id=self.tokenizer.eos_token_id,
-            pad_token=self.tokenizer.pad_token_id
+            pad_token_id=self.tokenizer.pad_token_id
         )
 
     def encode(self, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
