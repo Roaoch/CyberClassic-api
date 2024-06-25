@@ -40,8 +40,8 @@ class CyberClassic(torch.nn.Module):
         decoded = self.tokenizer.batch_decode(generated, skip_special_tokens=True)
 
         decoded_tokens = self.discriminator_tokenizer(decoded, return_tensors='pt', padding=True, truncation=True)
-        score = self.discriminator(decoded_tokens)
-        index = int(torch.argmax(score))
+        score = self.discriminator(**decoded_tokens)
+        index = int(torch.argmax(score.logits))
 
         return decoded[index]
 
