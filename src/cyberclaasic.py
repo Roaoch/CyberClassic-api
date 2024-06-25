@@ -55,5 +55,5 @@ class CyberClassic(torch.nn.Module):
             generation_config=self.generation_config,
         )
 
-        decoded = self.tokenizer.batch_decode(output)
+        decoded = self.tokenizer.batch_decode(output, skip_special_tokens=True)
         return decoded[0][length:].strip()
