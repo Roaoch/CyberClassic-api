@@ -46,7 +46,7 @@ class CyberClassic(torch.nn.Module):
         return decoded[index]
 
     def answer(self, promt: str) -> str:
-        promt = promt + ' .'
+        promt = promt + '. '
         length = len(promt)
 
         promt_tokens = self.tokenizer(promt, return_tensors='pt')
