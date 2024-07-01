@@ -15,4 +15,5 @@ App is a Docker Container utilizing Flask and Transformers deps.
 
 ## Part of CyberClassic model
 APi of Hugginface-sapce for ML-modle of [telegram bot](https://t.me/cyber_classic_bot)
+
 [HuggingFace Collection](https://huggingface.co/collections/Roaoch/cyberclassic-667bb10da45b8108ed4720d3)
